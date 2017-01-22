@@ -43,7 +43,9 @@ If you mount something into `/data/db1`, the container will not go through it's 
 You can customize the username/password by providing `USERNAME`/`PASSWORD` environment variables.
 
 Also, you need to execute rights to setup.sh before running Docker creation.
+```
 chmod +x ./setup.sh
+```
 
 ### Docker build command
 ```
