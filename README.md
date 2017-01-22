@@ -42,6 +42,9 @@ It's called: `rs0`
 If you mount something into `/data/db1`, the container will not go through it's initialization process, but it will also assume that you have mounted all 3 volumes -- so mount all 3 or none.
 You can customize the username/password by providing `USERNAME`/`PASSWORD` environment variables.
 
+Also, you need to execute rights to setup.sh before running Docker creation.
+chmod +x ./setup.sh
+
 ### Docker build command
 ```
 docker build -t authdockermongo:1.0.1 .
