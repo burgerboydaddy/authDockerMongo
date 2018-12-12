@@ -1,6 +1,6 @@
-FROM mongo:3.4
+FROM mongo:4.0
 
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils openssl && rm -rf /var/lib/apt/lists/*
 
 VOLUME /data
