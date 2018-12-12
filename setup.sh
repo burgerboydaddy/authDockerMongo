@@ -52,11 +52,11 @@ chmod 600 /var/mongo_keyfile
 
 echo "STARTING CLUSTER"
 
-mongod --port 27023 --smallfiles --dbpath /data/db3 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27023 --smallfiles --dbpath /data/db3 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
 DB3_PID=$!
-mongod --port 27022 --smallfiles --dbpath /data/db2 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27022 --smallfiles --dbpath /data/db2 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
 DB2_PID=$!
-mongod --port 27021 --smallfiles --dbpath /data/db1 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
+mongod --bind_ip_all --port 27021 --smallfiles --dbpath /data/db1 --auth --replSet rs0 --keyFile /var/mongo_keyfile  &
 DB1_PID=$!
 
 waitForMongo 27021 $USERNAME $PASSWORD
