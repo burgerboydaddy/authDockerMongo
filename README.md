@@ -1,6 +1,6 @@
 # MongoDB Local ReplicaSet
 
-This is docker image for creating mongodb replica set in yourlocal environment with authentication enabled (enforced to be precise). 
+This is docker image for creating mongodb replica set in your local environment with authentication enabled (enforced to be precise). 
 This docker image will create a self-contained 3 node replica set (that is, all three nodes are running in one container).
 Important part is that replica set enforce authentication.
 
@@ -49,28 +49,35 @@ chmod +x ./setup.sh
 
 ### Docker build command
 ```
-docker build -t authdockermongo:1.0.1 .
+docker build -t authdockermongo:2.0.1 .
 ```
 
 ### Example Run
-Regular container start. Connect data folder from current directory. Change if you have your data somewhere else.
+Regular container start (on Ubuntu 16.04). Connect data folder from current directory. Change if you have your data somewhere else.
 ```
-    docker run -p 27021:27021 -p 27022:27022 -p 27023:27023 -d --name autDockerMongo --network mongo10net --net-alias="authmongodocker.net" -v $(pwd)/data:/data authdockermongo:1.0.1
+    docker run -p 27021:27021 -p 27022:27022 -p 27023:27023 -d --name autDockerMongo --network mongo10net --net-alias="authmongodocker.net" -v $(pwd)/data:/data authdockermongo:2.0.1
 ```
 
 If you want to specify fixed IP address use next docker run command:
 ```
-    docker run -p 27021:27021 -p 27022:27022 -p 27023:27023 -d --name autDockerMongo --network mongo10net --ip=192.168.44.101 --net-alias="authmongodocker.net" -v $(pwd)/data:/data authdockermongo:1.0.1
+    docker run -p 27021:27021 -p 27022:27022 -p 27023:27023 -d --name autDockerMongo40 --network scp10net --ip=192.168.44.101 --net-alias="authmongodocker.net" -v $(pwd)/data:/data authdockermongo:2.0.1
+```
+
+Command to run from macOS 10.13+
+```
+docker run -p 27021:27021 -p 27022:27022 -p 27023:27023 -d --name autDockerMongo40 --network scp10net --net-alias="authmongodocker.net" -v $(pwd)/data:/data authdockermongo:2.0.1
 ```
 
 ### Example Mongo Connection String (from localhost command line (your development machine))
 ```
     mongo -u dbadmin -p adminPass --authenticationDatabase admin mongodb://localhost:27021,localhost:27022,localhost:27023/dbTest?replicaSet=rs0
 ```
+
 ### Example Mongo Native Connection String (from node.js app on the host)
 ```
     mongodb://dbadmin:adminPass@localhost:27021,localhost:27022,localhost:27023/dream1dev3?replicaSet=rs0&authSource=admin
 ```
+
 ### Example Mongoose Connection String (from node.js app on the host)
 ```
     MONGO_URI=mongodb://dbadmin:adminPass@localhost:27021/dream1dev3,localhost:27022/dream1dev3,localhost:27023/dream1dev3?replicaSet=rs0&authSource=admin
